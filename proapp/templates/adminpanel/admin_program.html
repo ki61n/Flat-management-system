@@ -1,0 +1,99 @@
+{% extends 'adminpanel/base.html' %}
+
+{% block title %}Admin Program Management{% endblock %}
+{% load custom_filters %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Program Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .hover-shadow {
+            transition: transform 0.3s ease;
+        }
+
+        .hover-shadow:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .custom-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #1e88e5, #42a5f5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        .custom-btn:hover {
+            background: linear-gradient(135deg, #42a5f5, #1e88e5);
+            transform: translateY(-2px);
+        }
+
+        .custom-btn:active {
+            background: linear-gradient(135deg, #1e88e5, #42a5f5);
+            transform: translateY(2px);
+        }
+
+        .custom-btn:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(30, 136, 229, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <h1 class="text-4xl font-bold text-center text-blue-600 mb-10">Admin Program Management</h1>
+
+    <div class="container mx-auto mt-10">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Add Program -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover-shadow">
+                <div class="text-center">
+                    <i class="fas fa-plus fa-3x mb-3 text-blue-600"></i>
+                    <h3 class="text-xl font-semibold mb-4">Add New Program</h3>
+                    <button onclick="window.location.href='{% url 'add_program' %}'" class="custom-btn">Add Program</button>
+                </div>
+            </div>
+
+            <!-- Approve Program -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover-shadow">
+                <div class="text-center">
+                    <i class="fas fa-check fa-3x mb-3 text-blue-600"></i>
+                    <h3 class="text-xl font-semibold mb-4">Approve Program</h3>
+                    <button onclick="window.location.href='{% url 'approve_program' %}'" class="custom-btn">Approve Program</button>
+                </div>
+            </div>
+
+            <!-- Approved Programs -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover-shadow">
+                <div class="text-center">
+                    <i class="fas fa-list fa-3x mb-3 text-blue-600"></i>
+                    <h3 class="text-xl font-semibold mb-4">Approved Programs</h3>
+                    <button onclick="window.location.href='{% url 'approved_programs' %}'" class="custom-btn">View Approved Programs</button>
+                </div>
+            </div>
+
+            <!-- Program Fees -->
+            <div class="bg-white p-6 rounded-lg shadow-md hover-shadow">
+                <div class="text-center">
+                    <i class="fas fa-dollar-sign fa-3x mb-3 text-blue-600"></i>
+                    <h3 class="text-xl font-semibold mb-4">Program Fees</h3>
+                    <button onclick="window.location.href='{% url 'program_amount' %}'" class="custom-btn">Manage Program Fees</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}

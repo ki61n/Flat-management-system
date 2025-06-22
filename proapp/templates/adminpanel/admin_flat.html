@@ -1,0 +1,138 @@
+{% extends 'adminpanel/base.html' %}
+
+{% block title %}Manage Flats{% endblock %}
+
+{% block content %}
+  <h1 class="#">Admin Flat Management</h1>
+  <div class="container mt-5">
+    <div class="row justify-content-center mb-5 ml-4"> <!-- Add mb-5 to increase space below this row -->
+
+        <!-- Add Flat -->
+        <div class="col-lg-4 col-md-6 mb-4 mt-1">
+            <div class="card shadow-sm hover-shadow">
+                <div class="card-body text-center">
+                    <i class="fas fa-plus fa-3x mb-3" style="color: #1e88e5;"></i>
+                    <h3 class="card-title">Add New Flat</h3>
+                    <button onclick="window.location.href='{% url 'add_flat' %}'" class="btn btn-primary custom-btn">Add Flat</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Flats -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow-sm hover-shadow">
+                <div class="card-body text-center">
+                    <i class="fas fa-eye fa-3x mb-3" style="color: #1e88e5;"></i>
+                    <h3 class="card-title">View All Flats</h3>
+                    <button onclick="window.location.href='{% url 'list_flats' %}'" class="btn btn-primary custom-btn">View Flats</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Manage Flats -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow-sm hover-shadow">
+                <div class="card-body text-center">
+                    <i class="fas fa-cog fa-3x mb-3" style="color: #1e88e5;"></i>
+                    <h3 class="card-title">Manage Flats</h3>
+                    <button onclick="window.location.href='{% url 'manage_flats' %}'" class="btn btn-primary custom-btn">Manage Flats</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5 ml-4"> <!-- Add mt-5 to increase space above this row -->
+
+        <!-- Sold Flats -->
+        <div class="col-lg-4 col-md-6 mb-4 mt-1">
+            <div class="card shadow-sm hover-shadow">
+                <div class="card-body text-center">
+                    <i class="fas fa-home fa-3x mb-3" style="color: #1e88e5;"></i>
+                    <h3 class="card-title">Sold Flats</h3>
+                    <button onclick="window.location.href='{% url 'sold_flats' %}'" class="btn btn-primary custom-btn">View Sold Flats</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rented Flats -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card shadow-sm hover-shadow">
+                <div class="card-body text-center">
+                    <i class="fas fa-key fa-3x mb-3" style="color: #1e88e5;"></i>
+                    <h3 class="card-title">Rented Flats</h3>
+                    <button onclick="window.location.href='{% url 'rented_flats' %}'" class="btn btn-primary custom-btn">View Rented Flats</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <style>
+    .container {
+        padding-left: 20px; /* Prevent content from colliding with the sidebar */
+    }
+
+    .hover-shadow {
+        transition: transform 0.3s ease;
+    }
+
+    .hover-shadow:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #1e88e5;
+        text-shadow: #1e88e5;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mb-4 {
+        margin-bottom: 3.5rem;
+    }
+
+    .mt-1 {
+        margin-top: 3rem;
+    }
+    .mt-4 {
+        margin-top: 3.5rem;
+    }
+    .ml-4{
+        margin-left: 2.5cm;
+    }
+
+    /* Button Custom Design */
+    .custom-btn {
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #1e88e5, #42a5f5);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+        width: 100%;
+    }
+
+    .custom-btn:hover {
+        background: linear-gradient(135deg, #42a5f5, #1e88e5);
+        transform: translateY(-2px);
+    }
+
+    .custom-btn:active {
+        background: linear-gradient(135deg, #1e88e5, #42a5f5);
+        transform: translateY(2px);
+    }
+
+    .custom-btn:focus {
+        outline: none;
+        box-shadow: 0 0 5px rgba(30, 136, 229, 0.5);
+    }
+  </style>
+
+{% endblock %}

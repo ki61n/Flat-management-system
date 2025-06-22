@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #1e88e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .menu-bar {
+            width: 200px;
+            background-color: #1e88e5;
+            padding: 0;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            transition: transform 0.3s ease; /* Smooth sliding */
+        }
+
+        .menu-bar.hidden {
+            transform: translateX(-200px); /* Hide the menu by sliding it off-screen */
+        }
+
+       /* Styles for when the menu is visible */
+.content {
+    flex-grow: 1;
+    margin-left: 200px; /* Reserve space for the menu */
+    padding: 20px;
+    transition: margin-left 0.3s ease; /* Smooth transition */
+    width: calc(100% - 200px); /* Adjust content width based on the menu's width */
+}
+
+/* Fullscreen content when the menu is hidden */
+.menu-hidden {
+    margin-left: 0; /* Remove the margin to make content full width */
+    width: 100%; /* Make content take the full width of the page */
+}
+
+/* Hide the menu */
+.menu-bar.hidden {
+    transform: translateX(-200px); /* Slide the menu out of view */
+}
+
+/* Button positioning */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    left: 220px;
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: left 0.3s ease;
+}
+
+/* Adjust button position when menu is hidden */
+.menu-hidden + .toggle-btn {
+    left: 20px; /* Button moves to the edge when the menu is hidden */
+}
+
+/* Mobile-specific adjustments */
+@media screen and (max-width: 768px) {
+    .content {
+        margin-left: 0;
+        width: 100%; /* Ensure fullscreen on mobile when menu is hidden */
+    }
+
+    .toggle-btn {
+        left: 20px;
+    }
+
+    .menu-bar {
+        position: absolute;
+        top: 60px;
+        left: -200px;
+        width: 200px;
+        transition: left 0.3s ease;
+    }
+
+    .menu-bar.show {
+        left: 0;
+    }
+}
+
+    </style>
+     <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+</head>
+<body>
+    
+        <header>
+            <h1>#</h1>
+        </header>
+    
+        <div class="container">
+            <!-- Sidebar Menu -->
+            {% include 'adminpanel/menu.html' %}
+    
+            <!-- Content Area -->
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    
+        <!-- Toggle button to hide/show menu -->
+        <button class="toggle-btn" onclick="toggleMenu()">Hide Menu</button> <!-- Button to toggle menu -->
+
+    <script>
+       function toggleMenu() {
+    const menu = document.querySelector('.menu-bar');
+    const content = document.querySelector('.content');
+    const toggleBtn = document.querySelector('.toggle-btn');
+
+    // Toggle the 'hidden' class on the menu to hide it
+    menu.classList.toggle('hidden');
+
+    // When the menu is hidden, add 'menu-hidden' class to the content to make it fullscreen
+    content.classList.toggle('menu-hidden');
+
+    // For mobile view
+    if (window.innerWidth <= 768) {
+        menu.classList.toggle('show'); // Slide in/out the menu on mobile
+    }
+
+    // Update the button text to reflect the state
+    toggleBtn.textContent = menu.classList.contains('hidden') ? 'Show Menu' : 'Hide Menu';
+}
+
+    </script>
+</body>
+</html>

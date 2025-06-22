@@ -1,0 +1,65 @@
+/* Menu Bar Styles */
+.menu-bar {
+    width: 200px;
+    background-color: #1e88e5; /* Primary background color */
+    color: white;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    transition: transform 0.3s ease; /* Smooth transition for hiding */
+}
+
+/* Styling the unordered list */
+.menu-bar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styling individual menu items */
+.menu-bar li {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Soft separator between items */
+}
+
+/* Styling the anchor tags inside the menu */
+.menu-bar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+/* Hover effect for menu items */
+.menu-bar a:hover {
+    background-color: #1565c0; /* Darker background on hover */
+    padding-left: 20px; /* Slight padding shift on hover for effect */
+}
+
+/* Active state styling */
+.menu-bar a.active {
+    background-color: #0d47a1; /* Darker blue to indicate the active page */
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+/* Mobile view specific styling */
+@media screen and (max-width: 768px) {
+    .menu-bar {
+        position: absolute;
+        top: 60px;
+        left: -200px;
+        width: 200px;
+        transition: left 0.3s ease;
+    }
+
+    .menu-bar.show {
+        left: 0;
+    }
+}

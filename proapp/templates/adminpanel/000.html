@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #1e88e5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .menu-bar {
+            width: 200px;
+            background-color: #1e88e5;
+            padding: 0;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .menu-bar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-bar li {
+            padding: 15px;
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-bar a:hover {
+            background-color: #1565c0;
+        }
+
+        .menu-bar.hidden {
+            display: none;
+        }
+
+        .content {
+            flex-grow: 1;
+            margin-left: 200px;
+            padding: 20px;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 20px;
+            left: 220px;
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .menu-hidden + .content {
+            margin-left: 0;
+        }
+
+        .menu-hidden + .toggle-btn {
+            left: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .content {
+                margin-left: 0;
+            }
+
+            .toggle-btn {
+                left: 20px;
+            }
+
+            .menu-bar {
+                position: absolute;
+                top: 60px;
+                left: -200px;
+                width: 200px;
+                transition: left 0.3s ease;
+            }
+
+            .menu-bar.show {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Menu -->
+        {% include 'adminpanel/menu.html' %}
+
+        <!-- Content Area -->
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu-bar');
+            const content = document.querySelector('.content');
+            const toggleBtn = document.querySelector('.toggle-btn');
+
+            menu.classList.toggle('hidden');
+            content.classList.toggle('menu-hidden');
+
+            if (window.innerWidth <= 768) {
+                menu.classList.toggle('show');
+            }
+
+            toggleBtn.textContent = menu.classList.contains('hidden') ? 'Show Menu' : 'Hide Menu';
+        }
+    </script>
+</body>
+</html>
+
+
+
+index
+
+{% extends 'adminpanel/base.html' %}
+
+{% block title %}Admin Panel{% endblock %}
+{% load static %}
+
+{% block content %}
+<h2>Welcome to the Admin Panel</h2>
+<p>This is the main content area. You can add different sections here depending on the functionality you need.</p>
+ <!-- Bootstrap core CSS -->
+ <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+ <!-- Additional CSS Files -->
+ <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+ <link rel="stylesheet" href="{% static 'css/templatemo-villa-agency.css' %}">
+ <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+ <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+ <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+<div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="breadcrumb"><a href="#">Home</a>  /  Contact Us</span>
+          <h3>Contact Us</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-page section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-heading">
+            <h6>| Contact Us</h6>
+            <h2>Get In Touch With Our Agents</h2>
+          </div>
+          <p>When you really need to download free CSS templates, please remember our website TemplateMo. Also, tell your friends about our website. Thank you for visiting. There is a variety of Bootstrap HTML CSS templates on our website. If you need more information, please contact us.</p>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="item phone">
+                <img src="{%  static 'images/phone-icon.png' %}" alt="" style="max-width: 52px;">
+                <h6>010-020-0340<br><span>Phone Number</span></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item email">
+                <img src="{%  static 'images/email-icon.png' %}" alt="" style="max-width: 52px;">
+                <h6>info@villa.co<br><span>Business Email</span></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <form id="contact-form" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="name">Full Name</label>
+                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="email">Email Address</label>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="subject">Subject</label>
+                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="message">Message</label>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">Send Message</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-12">
+          <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12469.776493332698!2d-80.14036379941481!3d25.907788681148624!2m3!1f357.26927939317244!2f20.870722720054623!3f0!3m2!1i1024!2i768!4f35!3m3!1m2!1s0x88d9add4b4ac788f%3A0xe77469d09480fcdb!2sSunny%20Isles%20Beach!5e1!3m2!1sen!2sth!4v1642869952544!5m2!1sen!2sth" width="100%" height="500px" frameborder="0" style="border:0; border-radius: 10px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);" allowfullscreen=""></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Copyright © 2048 Villa Agency Co., Ltd. All rights reserved. 
+        
+        Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{%  static 'vendor/jquery/jquery.min.js' %}"></script> static 
+  <script src="{%  static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{%  static 'js/isotope.min.js' %}"></script>
+  <script src="{%  static 'js/owl-carousel.js' %}"></script>
+  <script src="{%  static 'js/counter.js' %}"></script>
+  <script src="{%  static 'js/custom.js' %}"></script>
+
+<button class="toggle-btn" onclick="toggleMenu()">Hide Menu</button> <!-- Adjust button text here -->
+{% endblock %}
+
+
+
+<nav class="menu-bar" style="background-color: #1e88e5;"> <!-- Cream color -->
+    <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Users</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Reports</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</nav>
+
+
+
+
+
+{% extends 'adminpanel/base.html' %}
+
+{% block title %}Manage Flats{% endblock %}
+
+{% block content %}
+
+    
+        <h1 class="text-center mb-4">Admin Flat Management</h1>
+    
+        <!-- Table structure for flat management options -->
+        <table class="table table-borderless" style="border-spacing: 10px 10px;"> <!-- Adding space between cells -->
+            <!-- First row: Add Flat, View Flats, Manage Flats -->
+            <tr>
+                <td class="text-center" style="padding: 20px;">
+                    <div class="card shadow-sm hover-shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-plus fa-3x mb-3" style="color: #1e88e5;"></i>
+                            <h3 class="card-title">Add New Flat</h3>
+                            <a href="{% url 'add_flat' %}" class="btn btn-primary">Add Flat</a>
+                        </div>
+                    </div>
+                </td>
+    
+                <td class="text-center" style="padding: 20px;">
+                    <div class="card shadow-sm hover-shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-eye fa-3x mb-3" style="color: #1e88e5;"></i>
+                            <h3 class="card-title">View All Flats</h3>
+                            <a href="{% url 'view_flats' %}" class="btn btn-primary">View Flats</a>
+                        </div>
+                    </div>
+                </td>
+    
+                <td class="text-center" style="padding: 20px;">
+                    <div class="card shadow-sm hover-shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-cog fa-3x mb-3" style="color: #1e88e5;"></i>
+                            <h3 class="card-title">Manage Flats</h3>
+                            <a href="{% url 'manage_flats' %}" class="btn btn-primary">Manage Flats</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+    
+            <!-- Second row: Sold Flats, Rented Flats -->
+            <tr>
+                <td class="text-center" style="padding: 20px;">
+                    <div class="card shadow-sm hover-shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-home fa-3x mb-3" style="color: #1e88e5;"></i>
+                            <h3 class="card-title">Sold Flats</h3>
+                            <a href="{% url 'sold_flats' %}" class="btn btn-primary">View Sold Flats</a>
+                        </div>
+                    </div>
+                </td>
+    
+                <td class="text-center" style="padding: 20px;">
+                    <div class="card shadow-sm hover-shadow">
+                        <div class="card-body text-center">
+                            <i class="fas fa-key fa-3x mb-3" style="color: #1e88e5;"></i>
+                            <h3 class="card-title">Rented Flats</h3>
+                            <a href="{% url 'rented_flats' %}" class="btn btn-primary">View Rented Flats</a>
+                        </div>
+                    </div>
+                </td>
+                
+                <!-- Empty cell to balance layout -->
+                <td style="padding: 20px;"></td>
+            </tr>
+        </table>
+    
+    
+
+<style>
+    .container {
+        padding-left: 20px; /* Prevent content from colliding with the sidebar */
+    }
+
+    .hover-shadow {
+        transition: transform 0.3s ease;
+    }
+
+    .hover-shadow:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .mt-4 {
+        margin-top: 1.5rem;
+    }
+</style>
+
+{% endblock %}

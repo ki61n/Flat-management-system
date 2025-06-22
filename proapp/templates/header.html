@@ -1,0 +1,31 @@
+{% load static %}
+
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+               <nav class="main-nav"> 
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'index' %}" class="logo">
+                        <h1>MY::FLAT</h1>
+                        
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li><a href="{% url 'index' %}" class="nav-item nav-link active">Home</a></li>
+                      <li><a href="{% url 'properties' %}" class="nav-item nav-link">Available Flat</a></li>
+                      <li><a href="{% url 'property_details' %}" class="nav-item nav-link">Flat Details</a></li>
+                      <li><a href="{% url 'contact' %}" class="nav-item nav-link">Contact Us</a></li>
+                      <li><a href="#" class="nav-item nav-link active"></a>
+                      <li><a href="{% url 'login' %}"><i class="fa fa-calendar"></i> Login</a></li>
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>

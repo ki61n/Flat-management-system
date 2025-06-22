@@ -1,0 +1,55 @@
+{% extends 'userpanel/base_user.html' %}
+{% block title %}Available Flats{% endblock %}
+
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Available Flats</title>      
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: 'Roboto', sans-serif; }
+  </style>
+</head>
+<body class="bg-white text-black">
+  <div class="flex h-screen">
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Content -->
+      <div class="p-4 flex-1 overflow-y-auto">
+        <h1 class="text-2xl font-bold mb-4">AVAILABLE FLATS</h1>
+        
+        <div class="grid grid-cols-3 gap-4">
+          {% for flat in flats %}
+          <a href="{% url 'flat_details' flat_id=flat.flat_id %}" class="block">
+            <div class="bg-gray-200 p-4 rounded-lg">
+              <div>
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Images</h2>
+                <div class="flex space-x-4 overflow-x-auto">
+                    {% for image in flat.images.all %}
+                        <div class="flex-shrink-0">
+                            <img 
+                                src="{{ image.image.url }}" 
+                                alt="Image of the flat showing its interior or exterior" 
+                                class="rounded-lg transition-transform duration-300 hover:scale-105 shadow-md" 
+                                height="200" 
+                                width="200"/>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+              <h2 class="font-semibold text-lg mb-2">Flat {{ flat.flat_id }}</h2>
+              <p>Description: {{ flat.description }} </p>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+{% endblock %}

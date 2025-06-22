@@ -1,0 +1,32 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Django migrations (optional — keep if version-controlling DB state)
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# Environment variables
+.env
+*.env
+
+# SQLite database (if using a local dev DB)
+db.sql
+
+# Media files (uploaded files)
+media/
+
+
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db

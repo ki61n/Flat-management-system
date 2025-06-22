@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>Add Program</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <style>
+        .custom-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #1e88e5, #42a5f5);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        .custom-btn:hover {
+            background: linear-gradient(135deg, #42a5f5, #1e88e5);
+            transform: translateY(-2px);
+        }
+
+        .custom-btn:active {
+            background: linear-gradient(135deg, #1e88e5, #42a5f5);
+            transform: translateY(2px);
+        }
+
+        .custom-btn:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(30, 136, 229, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-10">
+        <h1 class="text-4xl font-bold text-center text-blue-600 mb-10">Add New Program</h1>
+        <form method="POST" action="{% url 'add_program' %}" class="bg-white p-6 rounded-lg shadow-md">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="program_name" class="block text-gray-700 text-sm font-bold mb-2">Program Name:</label>
+                <input type="text" id="program_name" name="program_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="program_description" class="block text-gray-700 text-sm font-bold mb-2">Program Description:</label>
+                <textarea id="program_description" name="program_description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="program_date" class="block text-gray-700 text-sm font-bold mb-2">Program Date:</label>
+                <input type="date" id="program_date" name="program_date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="mb-4">
+                <label for="program_location" class="block text-gray-700 text-sm font-bold mb-2">Program Location:</label>
+                <input type="text" id="program_location" name="program_location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="custom-btn">Add Program</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+

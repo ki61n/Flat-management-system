@@ -1,0 +1,151 @@
+{% extends 'userpanel/base_user.html' %}
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    {% if user_profile.profile_picture %}
+        <div class="profile-picture-container">
+            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+        </div>
+    {% else %}
+        <p class="no-picture">No profile picture available.</p>
+    {% endif %}
+    
+    <h2 class="profile-title">Profile Details</h2>
+    
+    <div class="profile-details">
+        <div class="detail-group">
+            <span class="detail-label">Username:</span>
+            <span class="detail-text">{{ user_profile.user.username }}</span>
+        </div>
+        
+        <div class="detail-group">
+            <span class="detail-label">Email:</span>
+            <span class="detail-text">{{ user_profile.user.email }}</span>
+        </div>
+        
+        <div class="detail-group">
+            <span class="detail-label">Name:</span>
+            <span class="detail-text">{{ user_profile.name }}</span>
+        </div>
+
+        <div class="detail-group">
+            <span class="detail-label">Address:</span>
+            <span class="detail-text">{{ user_profile.address }}</span>
+        </div>
+
+        <div class="detail-group">
+            <span class="detail-label">Phone:</span>
+            <span class="detail-text">{{ user_profile.phone }}</span>
+        </div>
+    </div>
+
+    <a href="{% url 'edit_profile' %}" class="update-profile-btn">Update Profile</a>
+</div>
+
+<!-- My Flat Section -->
+<div class="my-flat-container">
+    <h2 class="my-flat-title">My Flat</h2>
+    
+    {% if flat %}
+        <div class="flat-details">
+            <p><strong>Flat ID:</strong> {{ flat.flat_id }}</p>
+            <p><strong>Flat Number:</strong> {{ flat.flat_number }}</p>
+            <p><strong>Hall:</strong> {{ flat.hall }}</p>
+            <p><strong>Bedrooms:</strong> {{ flat.bedroom }}</p>
+            <p><strong>Bathrooms:</strong> {{ flat.bathroom }}</p>
+            <p><strong>Kitchen:</strong> {{ flat.kitchen }}</p>
+            <p><strong>Type:</strong> {{ flat.type_of_flat }}</p>
+            <p><strong>Description:</strong> {{ flat.description }}</p>
+            <p><strong>Amount:</strong> ${{ flat.buy_amount }}</p>
+        </div>
+    {% else %}
+        <p>No flat associated with this account.</p>
+    {% endif %}
+</div>
+
+<style>
+    /* Existing styles */
+    .profile-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .profile-title {
+        font-size: 24px;
+        color: #333;
+        margin-top: 20px;
+    }
+    .profile-picture-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .no-picture {
+        color: #888;
+        font-style: italic;
+        margin-bottom: 20px;
+    }
+    .profile-details {
+        text-align: left;
+    }
+    .detail-group {
+        margin-bottom: 15px;
+    }
+    .detail-label {
+        display: block;
+        font-weight: bold;
+        color: #555;
+    }
+    .detail-text {
+        display: block;
+        font-size: 16px;
+        color: #333;
+        margin-top: 5px;
+    }
+    .update-profile-btn {
+        display: inline-block;
+        padding: 12px 20px;
+        margin-top: 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .update-profile-btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* My Flat Section styles */
+    .my-flat-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #e9ecef;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .my-flat-title {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .flat-details p {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}

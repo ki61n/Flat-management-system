@@ -1,0 +1,140 @@
+{% extends 'adminpanel/base.html' %}
+
+{% block title %}Add Flat{% endblock %}
+{% load custom_filters %}
+{% block content %}
+<h2 class="text-center mb-4 text-primary">Add New Flat</h2>
+
+<div class="container mt-5">
+    <form method="POST" enctype="multipart/form-data" class="shadow p-4 bg-white rounded">
+        {% csrf_token %}
+        
+        <div class="row mb-4 mb-3">
+            <!-- Flat ID -->
+            <div class="col-md-6 mb-4">
+                <label for="id_flat_id" class="form-label">Flat ID</label>
+                {{ form.flat_id|add_class:"form-control" }}
+            </div>
+        
+            <!-- Flat Number -->
+            <div class="col-md-6 mb-4">
+                <label for="id_flat_number" class="form-label">Flat Number</label>
+                {{ form.flat_number|add_class:"form-control" }}
+            </div>
+        </div>
+        
+        <div class="row mb-3 mb-4">
+            <!-- Hall -->
+            <div class="col-md-6 mb-4">
+                <label for="id_hall" class="form-label">Hall</label>
+                {{ form.hall|add_class:"form-control" }}
+            </div>
+        
+            <!-- Bedroom -->
+            <div class="col-md-6 mb-4">
+                <label for="id_bedroom" class="form-label">Bedroom</label>
+                {{ form.bedroom|add_class:"form-control" }}
+            </div>
+        </div>
+        
+        <div class="row mb-3 mb-4">
+            <!-- Bathroom -->
+            <div class="col-md-6 mb-4">
+                <label for="id_bathroom" class="form-label">Bathroom</label>
+                {{ form.bathroom|add_class:"form-control" }}
+            </div>
+        
+            <!-- Kitchen -->
+            <div class="col-md-6 mb-4">
+                <label for="id_kitchen" class="form-label">Kitchen</label>
+                {{ form.kitchen|add_class:"form-control" }}
+            </div>
+        </div>
+        
+        <div class="row mb-3 mb-4">
+            <!-- Type of Flat -->
+            <div class="col-md-6 mb-4">
+                <label for="id_type_of_flat" class="form-label">Type of Flat</label>
+                {{ form.type_of_flat|add_class:"form-control" }}
+            </div>
+        
+            <!-- Description -->
+            <div class="col-md-6 mb-4">
+                <label for="id_description" class="form-label">Description</label>
+                {{ form.description|add_class:"form-control" }}
+            </div>
+        </div>
+
+        <div class="row mb-3 mb-4">
+            <!-- Rent Amount -->
+            <div class="col-md-6 mb-4">
+                <label for="id_rent_amount" class="form-label">Rent Amount</label>
+                {{ form.rent_amount|add_class:"form-control" }}
+            </div>
+        
+            <!-- Buy Amount -->
+            <div class="col-md-6 mb-4">
+                <label for="id_buy_amount" class="form-label">Buy Amount</label>
+                {{ form.buy_amount|add_class:"form-control" }}
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <label for="id_flat_image" class="form-label">Upload Flat Images</label>
+            {{ flat_image_form.images|add_class:"form-control-file" }} <!-- Use 'images' instead of 'image' -->
+            <small class="form-text text-muted">You can upload multiple images.</small>
+        </div>
+        
+        <div class="text-center mb-4">
+            <button type="submit" class="btn btn-primary btn-lg">Add Flat</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    h2 {
+        font-weight: bold;
+        font-size: 2.5rem;
+        color: #1e88e5;
+    }
+
+    .shadow {
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control,
+    .form-control-file {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+        border-color: #1e88e5;
+        box-shadow: 0 0 5px rgba(30, 136, 229, 0.3);
+    }
+
+    .btn-primary {
+        padding: 12px 30px;
+        font-size: 1.2rem;
+        border-radius: 5px;
+    }
+    
+    .mb-4 {
+        margin-bottom: 2.5rem;
+    }
+
+    .mt-1 {
+        margin-top: 3rem;
+    }
+</style>
+{% endblock %}

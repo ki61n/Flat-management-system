@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>Flat Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-center text-blue-600 text-3xl font-bold mb-6">Flat Details</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label class="font-semibold text-gray-700">Flat ID:</label>
+                <p class="text-gray-900">{{ flat.flat_id }}</p>
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Flat Number:</label>
+                <p class="text-gray-900">{{ flat.flat_number }}</p>
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Hall:</label>
+                <p class="text-gray-900">{{ flat.hall }}</p>
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Bedroom:</label>
+                <p class="text-gray-900">{{ flat.bedroom }}</p>
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Bathroom:</label>
+                <p class="text-gray-900">{{ flat.bathroom }}</p>
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Kitchen:</label>
+                <p class="text-gray-900">{{ flat.kitchen }}</p>
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Type of Flat:</label>
+                <p class="text-gray-900">{{ flat.type_of_flat }}</p>
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Description:</label>
+                <p class="text-gray-900">{{ flat.description }}</p>
+            </div>
+        </div>
+        <div class="text-center mt-6">
+            <a href="{% url 'edit_flat' flat.flat_id %}" class="bg-blue-600 text-white py-2 px-4 rounded-lg text-lg hover:bg-blue-700">Edit Flat</a>
+        </div>
+    </div>
+
+    <div class="container mx-auto mt-8">
+        <h4 class="text-center text-blue-600 text-2xl font-bold mb-4">Flat Images</h4>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {% for image in images %}
+            <div class="bg-gray-200 p-4 rounded-lg shadow-md">
+                <img src="{{ image.image.url }}" class="w-full h-auto rounded-lg" alt="Image of the flat showing {{ image.description }}">
+            </div>
+            {% empty %}
+            <p class="text-center text-gray-600">No images available for this flat.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

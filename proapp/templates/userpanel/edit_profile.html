@@ -1,0 +1,102 @@
+{% extends 'userpanel/base_user.html' %}
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h2 class="profile-title">Edit Profile</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="profile-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_name">Name:</label>
+            <input type="text" id="id_name" name="name" value="{{ form.name.value|default:user_profile.name }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="id_address">Address:</label>
+            <input type="text" id="id_address" name="address" value="{{ form.address.value|default:user_profile.address }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="id_phone">Phone:</label>
+            <input type="text" id="id_phone" name="phone" value="{{ form.phone.value|default:user_profile.phone }}" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="id_profile_picture">Profile Picture:</label>
+            <input type="file" id="id_profile_picture" name="profile_picture" class="form-control">
+            {% if user_profile.profile_picture %}
+                <div class="current-picture">
+                    <img src="{{ user_profile.profile_picture.url }}" alt="Current Profile Picture" width="100" height="100">
+                    <p>Current Profile Picture</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .profile-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    .profile-title {
+        font-size: 24px;
+        color: #333;
+        margin-top: 20px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+    .form-group label {
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+    }
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+    .form-control:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+    .btn-primary {
+        padding: 12px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .current-picture {
+        margin-top: 10px;
+    }
+    .current-picture img {
+        border-radius: 50%;
+    }
+</style>
+
+{% endblock %}

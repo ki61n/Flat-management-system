@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flat Details</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Flat Details</h1>
+
+    <div class="flat-details">
+        <h2>{{ flat.name }}</h2>
+        <p><strong>Address:</strong> {{ flat.address }}</p>
+        <p><strong>Number of Rooms:</strong> {{ flat.num_rooms }}</p>
+        <p><strong>Rent:</strong> {{ flat.rent }}</p>
+        <p><strong>Description:</strong> {{ flat.description }}</p>
+        <!-- Add more fields as needed -->
+    </div>
+
+    <a href="{% url 'manage_flats' %}" class="button">Back to All Flats</a>
+</body>
+</html>
