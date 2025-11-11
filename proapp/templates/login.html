@@ -164,7 +164,7 @@
 
     <div class="login-container">
         <h2>Login</h2>
-        <form action="{% url 'login_view' %}" method="post" id="myform">
+    <form action="{% url 'login' %}" method="post" id="myform">
             {% csrf_token %}
             <div class="form-group">
                 <label for="name">usernsmr</label>

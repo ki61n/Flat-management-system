@@ -124,7 +124,9 @@ class FlatForm(forms.ModelForm):
 
 
 class FlatImageForm(forms.Form):
-    images = forms.ImageField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False)
+    # Use a simple FileField for uploads. If multiple files are needed, the view
+    # should read request.FILES.getlist('images') and handle multiple files there.
+    images = forms.FileField(required=False)
     labels = {
                 'flat_id': 'Flat ID',
     } 

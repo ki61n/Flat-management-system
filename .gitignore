@@ -4,8 +4,7 @@ __pycache__/
 *.pyo
 
 # Django migrations (optional — keep if version-controlling DB state)
-**/migrations/*.pyc
-**/migrations/__pycache__/
+migrations
 
 # Environment variables
 .env
@@ -30,3 +29,5 @@ media/
 # OS-specific
 .DS_Store
 Thumbs.db
+/.venv
+.venv
